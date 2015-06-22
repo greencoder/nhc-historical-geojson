@@ -21,10 +21,10 @@ $ mkdir -p output/pacific
 
 # Processing
 
-With the [atlantic.txt](atlantic.txt) and [pacific.txt](pacific.txt) files in your current directory, run the `process.py` command:
+With the [atlantic.txt](atlantic.txt) and [pacific.txt](pacific.txt) files in your current directory, run the [process.py](process.py) command:
 ```
 $ python process.py
 ```
 
-The script will run and put the resulting GeoJSON files in the [output/atlantic](output/atlantic) and [output/pacific][output/pacific] directories. It will also create a [manifest file][output/manifest.json] that lists all the storms in both basins.
+The script will run and put the resulting GeoJSON files in the [output/atlantic](output/atlantic) and [output/pacific](output/pacific) directories. It will also create a [manifest file](output/manifest.json) that lists all the storms in both basins.
 
