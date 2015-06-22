@@ -1,4 +1,4 @@
-# nch-historical-geojson
+# nhc-historical-geojson
 
 Turn the National Hurricane Center archives into individual GeoJSON files.
 
