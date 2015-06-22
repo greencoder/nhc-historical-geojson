@@ -1,0 +1,188 @@
+{
+    "type": "FeatureCollection", 
+    "features": [
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -65.2, 
+                    30.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "EX", 
+                "pressure-mb": 1000.0, 
+                "datetime-utc": "2004-10-10 00:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -66.3, 
+                    31.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 1000.0, 
+                "datetime-utc": "2004-10-10 06:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -66.5, 
+                    31.5
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 1000.0, 
+                "datetime-utc": "2004-10-10 12:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -66.5, 
+                    32.1
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 998.0, 
+                "datetime-utc": "2004-10-10 18:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -65.5, 
+                    32.9
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 994.0, 
+                "datetime-utc": "2004-10-11 00:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -63.9, 
+                    34.3
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 992.0, 
+                "datetime-utc": "2004-10-11 06:00:00+00:00", 
+                "wind-speed": 40.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -61.8, 
+                    36.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 986.0, 
+                "datetime-utc": "2004-10-11 12:00:00+00:00", 
+                "wind-speed": 45.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -60.5, 
+                    38.5
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "SS", 
+                "pressure-mb": 986.0, 
+                "datetime-utc": "2004-10-11 18:00:00+00:00", 
+                "wind-speed": 45.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "LineString", 
+                "coordinates": [
+                    [
+                        -65.2, 
+                        30.0
+                    ], 
+                    [
+                        -66.3, 
+                        31.0
+                    ], 
+                    [
+                        -66.5, 
+                        31.5
+                    ], 
+                    [
+                        -66.5, 
+                        32.1
+                    ], 
+                    [
+                        -65.5, 
+                        32.9
+                    ], 
+                    [
+                        -63.9, 
+                        34.3
+                    ], 
+                    [
+                        -61.8, 
+                        36.0
+                    ], 
+                    [
+                        -60.5, 
+                        38.5
+                    ]
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {}
+        }
+    ], 
+    "properties": {
+        "basin": "AL", 
+        "number": "15", 
+        "name": "NICOLE", 
+        "year": "2004"
+    }
+}
