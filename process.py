@@ -3,7 +3,7 @@ import json
 import sys
 
 class Storm(object):
-    
+
     def __init__(self, basin, number, year, name, num_entries):
         self.basin = basin
         self.number = number
@@ -13,6 +13,7 @@ class Storm(object):
         self.expected_num_features = num_entries
 
     def to_manifest_dict(self):
+        """ Returns the object as a dictionary used in the manifest file """
         return {
             'name': self.name,
             'year': self.year,
@@ -21,8 +22,9 @@ class Storm(object):
 
     @property
     def linestring_feature(self):
-        coords = [(f.longitude, f.latitude) for f in self.features]
-        return { 
+        """ Returns a linestring geojson feature of the storm path """
+        coords = [(feat.longitude, feat.latitude) for feat in self.features]
+        return {
             'type': 'Feature',
             'properties': {},
             'geometry': {
@@ -33,22 +35,23 @@ class Storm(object):
 
     @property
     def filename(self):
+        """ Returns the name that can be used as a filename base """
         fn = '%s-%s-%s-%s' % (self.year, self.basin, self.number, self.name)
         return fn.lower()
-    
+
 class Entry(object):
-    
-    def __init__(self, datetime_utc, id, status, latitude, longitude, \
-        wind_speed, pressure_mb):
+
+    def __init__(self, datetime_utc, ident, status, lat, lng, wspeed, pressure):
         self.datetime_utc = datetime_utc
-        self.identifier_code = id
+        self.identifier_code = ident
         self.system_status = status
-        self.latitude = latitude
-        self.longitude = longitude
-        self.wind_speed = wind_speed
-        self.pressure_mb = pressure_mb
+        self.latitude = lat
+        self.longitude = lng
+        self.wind_speed = wspeed
+        self.pressure_mb = pressure
 
     def to_feature_dict(self):
+        """ Returns the entry as a geojson point feature """
         return {
             'type': 'Feature',
             'geometry': {
@@ -64,30 +67,30 @@ class Entry(object):
                 'wind-speed': self.wind_speed,
                 'datetime-utc': self.datetime_utc,
                 'pressure-mb': self.pressure_mb,
-            } 
+            }
         }
 
 if __name__ == '__main__':
-    
+
     with open('atlantic.txt', 'r') as f:
         atlantic_lines = [line.strip() for line in f.readlines()]
-    
+
     with open('pacific.txt', 'r') as f:
         pacific_lines = [line.strip() for line in f.readlines()]
-    
-    atlantic_storms = []
-    pacific_storms = []
-    
+
+    ATLANTIC_STORMS = []
+    PACIFIC_STORMS = []
+
     for basin_name in ('atlantic', 'pacific'):
-        
+
         storms = []
         current_storm = None
-    
+
         for line in atlantic_lines:
-        
+
             # Split up the comma-delimited string
             parts = [p.strip() for p in line.split(',')]
-        
+
             # See if it's a header line
             if line.startswith('AL') or line.startswith('EP'):
 
@@ -98,46 +101,46 @@ if __name__ == '__main__':
 
                 # The second piece is the storm name
                 name = parts[1]
-            
+
                 # The third piece is the number of entries
                 num_entries = int(parts[2])
 
                 # Create a storm object
                 storm = Storm(basin, number, year, name, num_entries)
                 storms.append(storm)
-            
+
                 # Assign a state variable so we know where storm entries
                 # should get assigned to
                 current_storm = storm
-    
+
             # If it's not a header line, then it must be a storm track entry
             else:
-            
+
                 # The first part contains positional data about the date
                 year = parts[0][0:4]
                 month = parts[0][4:6]
                 day = parts[0][6:8]
-            
+
                 # The second part contains positional data about the time
                 hour = parts[1][0:2]
                 minute = parts[1][2:4]
-            
+
                 # Create a datetime object in ISO format
                 datetime_utc = '%s-%s-%s %s:%s:00+00:00' % (year, month, day, hour, minute)
-            
+
                 # The third part contains an optional record identifier
                 # See record_identifiers.txt for details. Note that
                 # these are often blank
                 identifier_code = parts[2]
-            
+
                 # The fourth part contains the status. See system_status.txt
                 # for details.
                 system_status = parts[3]
-            
-                # The fifth part contains the latitude with a 'N' or 'S' 
+
+                # The fifth part contains the latitude with a 'N' or 'S'
                 # in the last position. We need to change this to '-' if 'S'
                 latitude = float(parts[4][:-1])
-            
+
                 # If it's in the southern hemisphere, subtract it from zero
                 # to make it a negative number
                 if parts[4][-1] == 'S':
@@ -146,7 +149,7 @@ if __name__ == '__main__':
                 # The sixth part contains the longitude with a 'E' or 'W'
                 # in the last position
                 longitude = float(parts[5][:-1])
-            
+
                 # If it's in the eastern hemisphere, subtrack it from zero
                 # to make it a negative number
                 if parts[5][-1] == 'W':
@@ -154,10 +157,10 @@ if __name__ == '__main__':
 
                 # The seventh part is the maximum sustained wind speed
                 wind_speed = float(parts[6])
-            
+
                 # The eigth part is the minimum pressure in millibars
                 pressure_mb = float(parts[7])
-            
+
                 # Create an entry object
                 entry = Entry(datetime_utc, identifier_code, system_status, latitude, longitude, \
                     wind_speed, pressure_mb)
@@ -166,10 +169,10 @@ if __name__ == '__main__':
                 current_storm.features.append(entry)
 
         # Save the storms so we can write out the master list later
-        if basin_name == 'atlantic': 
-            atlantic_storms = storms
+        if basin_name == 'atlantic':
+            ATLANTIC_STORMS = storms
         else:
-            pacific_storms = storms
+            PACIFIC_STORMS = storms
 
         # Output the storms as geojson files
         for storm in storms:
@@ -177,7 +180,7 @@ if __name__ == '__main__':
             if len(storm.features) != storm.expected_num_features:
                 sys.exit('We have the wrong number of features for storm %s' % storm.filename)
 
-            # Create a GeoJSON feature collection 
+            # Create a GeoJSON feature collection
             output = {
                 'type': 'FeatureCollection',
                 'features': [f.to_feature_dict() for f in storm.features],
@@ -188,21 +191,21 @@ if __name__ == '__main__':
                     'number': storm.number
                 }
             }
-        
+
             # Add the track line string feature to our features
             output['features'].append(storm.linestring_feature)
 
             filename = 'output/' + basin_name + '/' + storm.filename + '.geojson'
             print 'Writing %s' % filename
-        
+
             with open(filename, 'w') as f:
                 f.write(json.dumps(output, indent=4))
-        
+
     # Create a manifest file that lists all the available storms
     manifest = {
         'created-at': datetime.datetime.utcnow().isoformat(),
-        'atlantic-storms': [s.to_manifest_dict() for s in atlantic_storms],
-        'pacific-storms': [s.to_manifest_dict() for s in pacific_storms],
+        'atlantic-storms': [s.to_manifest_dict() for s in ATLANTIC_STORMS],
+        'pacific-storms': [s.to_manifest_dict() for s in PACIFIC_STORMS],
     }
 
     print 'Writing Manifest File.'
