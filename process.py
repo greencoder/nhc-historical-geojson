@@ -146,12 +146,7 @@ if __name__ == '__main__':
 
                 # The fifth part contains the latitude with a 'N' or 'S'
                 # in the last position. We need to change this to '-' if 'S'
-                try:
-                    latitude = float(parts[4][:-1])
-                except IndexError:
-                    print 'Index Error'
-                    print parts
-                    sys.exit()
+                latitude = float(parts[4][:-1])
 
                 # If it's in the southern hemisphere, subtract it from zero
                 # to make it a negative number
