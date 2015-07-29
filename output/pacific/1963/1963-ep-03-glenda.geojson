@@ -1,0 +1,209 @@
+{
+    "type": "FeatureCollection", 
+    "features": [
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -116.0, 
+                    14.3
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-19 12:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -117.0, 
+                    14.1
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-19 18:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -118.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-20 00:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -119.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-20 06:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -120.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-20 12:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -121.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-20 18:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -122.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-21 00:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -123.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-21 06:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "Point", 
+                "coordinates": [
+                    -124.0, 
+                    14.0
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "id-code": "", 
+                "status": "HU", 
+                "pressure-mb": -999.0, 
+                "datetime-utc": "1963-07-21 12:00:00+00:00", 
+                "wind-speed": 75.0
+            }
+        }, 
+        {
+            "geometry": {
+                "type": "LineString", 
+                "coordinates": [
+                    [
+                        -116.0, 
+                        14.3
+                    ], 
+                    [
+                        -117.0, 
+                        14.1
+                    ], 
+                    [
+                        -118.0, 
+                        14.0
+                    ], 
+                    [
+                        -119.0, 
+                        14.0
+                    ], 
+                    [
+                        -120.0, 
+                        14.0
+                    ], 
+                    [
+                        -121.0, 
+                        14.0
+                    ], 
+                    [
+                        -122.0, 
+                        14.0
+                    ], 
+                    [
+                        -123.0, 
+                        14.0
+                    ], 
+                    [
+                        -124.0, 
+                        14.0
+                    ]
+                ]
+            }, 
+            "type": "Feature", 
+            "properties": {}
+        }
+    ], 
+    "properties": {
+        "basin": "EP", 
+        "number": "03", 
+        "name": "GLENDA", 
+        "year": "1963"
+    }
+}

@@ -1,5 +1,6 @@
 import datetime
 import json
+import os
 import sys
 
 class Storm(object):
@@ -72,27 +73,33 @@ class Entry(object):
 
 if __name__ == '__main__':
 
+    lines = {'atlantic': None, 'pacific': None}
+
     with open('atlantic.txt', 'r') as f:
-        atlantic_lines = [line.strip() for line in f.readlines()]
+        lines['atlantic'] = [line.strip() for line in f.readlines()]
 
     with open('pacific.txt', 'r') as f:
-        pacific_lines = [line.strip() for line in f.readlines()]
+        lines['pacific'] = [line.strip() for line in f.readlines()]
 
     ATLANTIC_STORMS = []
     PACIFIC_STORMS = []
+    
+    CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 
     for basin_name in ('atlantic', 'pacific'):
+
+        print 'Basin: %s' % basin_name
 
         storms = []
         current_storm = None
 
-        for line in atlantic_lines:
+        for line in lines[basin_name]:
 
             # Split up the comma-delimited string
             parts = [p.strip() for p in line.split(',')]
 
             # See if it's a header line
-            if line.startswith('AL') or line.startswith('EP'):
+            if line.startswith('AL') or line.startswith('EP') or line.startswith('CP'):
 
                 # The first chunk contains positional data
                 basin = parts[0][0:2]
@@ -139,7 +146,12 @@ if __name__ == '__main__':
 
                 # The fifth part contains the latitude with a 'N' or 'S'
                 # in the last position. We need to change this to '-' if 'S'
-                latitude = float(parts[4][:-1])
+                try:
+                    latitude = float(parts[4][:-1])
+                except IndexError:
+                    print 'Index Error'
+                    print parts
+                    sys.exit()
 
                 # If it's in the southern hemisphere, subtract it from zero
                 # to make it a negative number
@@ -195,10 +207,21 @@ if __name__ == '__main__':
             # Add the track line string feature to our features
             output['features'].append(storm.linestring_feature)
 
-            filename = 'output/' + basin_name + '/' + storm.filename + '.geojson'
-            print 'Writing %s' % filename
+            # Create the path for the output
+            directory_path = 'output/' + basin_name + '/' + storm.year + '/'
+            directory_filepath = os.path.join(CUR_DIR, directory_path)
+            
+            # Make sure the directory exists
+            if not os.path.exists(directory_filepath):
+                os.makedirs(directory_filepath)
 
-            with open(filename, 'w') as f:
+            # Skip the file if it's Central Pacific - the linestrings don't work
+            if storm.filename.startswith('%s-cp-' % storm.year):
+                continue
+
+            # Write out the file
+            filepath = os.path.join(directory_filepath, '%s.geojson' % storm.filename)
+            with open(filepath, 'w') as f:
                 f.write(json.dumps(output, indent=4))
 
     # Create a manifest file that lists all the available storms

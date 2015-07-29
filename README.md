@@ -6,11 +6,11 @@ Turn the National Hurricane Center archives into individual GeoJSON files.
 
 First, grab the historical data archives from the [NHC data website](http://www.nhc.noaa.gov/data/) and save them locally. Scroll down to the 'Best Track Data (HURDAT2)' section and find the two database files.
 
-*Note: The filenames below are the current ones as of this date (6/22/15), check the link above for updated versions each season.*
+*Note: The filenames below are the current ones as of this date (7/29/15), check the link above for updated versions each season.*
 
 ```
 $ wget -O atlantic.txt http://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2014-060415.txt
-$ wget -O pacific.txt http://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2014-060415.txt
+$ wget -O pacific.txt http://www.nhc.noaa.gov/data/hurdat/hurdat2-nencpac-1949-2013-070714.txt
 ```
 
 Create an `output` directory, then create `atlantic` and `pacific` subdirectories in it:
